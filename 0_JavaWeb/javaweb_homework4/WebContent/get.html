@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="UTF-8">
+	<title>get_test</title>
+	<style>
+        td{width: 250px;line-height:30px;}
+		.header{width:100px;text-align:right;}
+	</style>
+	<script>
+		function check(form){
+			if(form.username.value == ''){
+				alert("The user name cannot be empty!");
+                return false;
+			}
+			return true;
+		}
+	</script>
+</head>
+<body>
+	<form action="/javaweb_homework4/s1" method="get" id="data" onsubmit="return check(this)">
+	<!-- 
+		action="/homework/h1" 
+		${pageContext.request.contextPath}==/homework，页面资源引用
+	-->
+		<table border="1" cellspacing="0" align="center">
+			<tr>
+				<td class="header"><font color="red">*</font>username:</td>
+				<td><input type="text" name="username"></td>
+			</tr>
+			<tr>
+				<td class="header">age:</td>
+				<td><input type="number" name="age"></td>
+			</tr>
+			<tr>
+				<td class="header">school:</td>
+				<td><input type="text" name="school"></td>
+			</tr>
+			<tr>
+				<td colspan="2">
+					<div style="text-align:center;">
+						<input type="submit" value="submit">
+					</div>
+				</td>
+			</tr>
+		</table>
+	</form>
+</body>
+</html>

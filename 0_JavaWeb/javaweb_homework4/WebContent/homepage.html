@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="UTF-8">
+	<title>homepage</title>
+	<script>
+		function isChecked(){
+			if(document.getElementById("get").checked){
+				window.location.replace("get.html");
+			}
+			else if(document.getElementById("post").checked){
+				window.location.replace("post.html");
+			}
+		}
+	</script>
+</head>
+<body>
+	<div style="text-align: center;">
+		<h2>Please select the desired mode of data transfer:</h2>
+		<input type="radio" name="mode" id="get">get
+		<input type="radio" name="mode" id="post">post
+		<br>
+		<input type="button" value="submit" style="margin-top:30px;" onclick="isChecked()">
+	</div>
+</body>
+</html>

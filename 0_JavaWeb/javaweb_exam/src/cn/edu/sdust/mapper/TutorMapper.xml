@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="cn.edu.sdust.mapper.ITutorMapper">
+
+	<resultMap type="cn.edu.sdust.domain.Tutor" id="Tutor">
+        <id column="tutorid" property="tutorid" />
+        <result column="tutorname" property="tutorname" />
+        <result column="years" property="years" />
+        <result column="tutorinformation" property="tutorinformation" />
+    </resultMap>
+    
+    <select id="selectAllTutors" resultMap="Tutor">
+    	SELECT *
+    	FROM writing
+    </select>
+
+	<insert id="insertTutor" parameterType="cn.edu.sdust.domain.Tutor">
+		INSERT INTO writing(tutorid, tutorname, years, tutorinformation)
+		VALUES(#{tutorid}, #{tutorname}, #{years}, #{tutorinformation})
+	</insert>
+</mapper>

@@ -1,0 +1,95 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="cn.edu.sdust.crm.mapper.SheetMapper">
+
+	<resultMap type="cn.edu.sdust.crm.domain.Sheet" id="resultSheet">
+        <id column="id" property="id" />
+        <result column="title" property="title" />
+    </resultMap>
+    
+	<select id="SelectAllSheets" resultMap="resultSheet" >
+		SELECT *
+		FROM worksheets
+	</select>   
+	
+    <select id="SelectSheetsByParam" resultMap="resultSheet"  parameterType="cn.edu.sdust.crm.domain.Sheet" >
+		SELECT *
+		FROM worksheets
+		where 1 = 1		
+		<if test="title != null and title != ''">
+		    and  title = #{title}	</if>
+		<if test="createtime != null and createtime != ''">
+		    and  createtime = #{createtime} 
+		</if>
+		<if test="accepttime != null and accepttime !=0">
+		    and  accepttime = #{accepttime} 
+		</if>
+
+	</select>   
+	
+    <select id="SelectSheetById" resultMap="resultSheet" parameterType="int">
+		SELECT *
+		FROM worksheets where id=#{id}
+	</select>
+	
+	<select id="qureyByParam" resultMap="resultSheet" parameterType="int">
+        select *
+        from worksheets
+        where 1=1
+        <if test="t != null and t != ''">
+		    and  title LIKE '%${t}%'	
+		</if>
+		<if test="st != null and st != '' and ed != null and ed !=''">
+            and  createTime >= #{st} and #{ed} >= createTime
+        </if>
+    </select>
+    
+    <select id="SelectSheetsByOp1" resultMap="resultSheet" parameterType="int">
+		SELECT *
+		FROM worksheets 
+		where status='已提交'
+	</select>	   
+	
+	<select id="SelectSheetsByOp2" resultMap="resultSheet" parameterType="int">
+		SELECT *
+		FROM worksheets 
+		where status='已受理'
+	</select>
+	
+	<select id="SelectSheetsByOp3" resultMap="resultSheet" parameterType="int">
+		SELECT *
+		FROM worksheets 
+		where status='已完结'
+	</select>
+	
+	<select id="SelectSheetsByOp4" resultMap="resultSheet" parameterType="int">
+		SELECT *
+		FROM worksheets 
+		where status='已回复'
+	</select>
+	
+	<select id="SelectSheetsByOp5" resultMap="resultSheet" parameterType="int">
+		SELECT *
+		FROM worksheets 
+		where status='已分配'
+	</select>
+	
+	<delete id="DeleteSheet" parameterType = "int">
+	    delete from worksheets
+	    where id = #{id}
+	</delete>   
+	
+	<!--                        -->
+	<insert id="InsertSheet" parameterType="cn.edu.sdust.crm.domain.Sheet">
+		INSERT INTO 
+		worksheets(id,title,status,originator,associates,importance,createtime,template,opration) 
+		VALUES (#{id},#{title},#{status},#{originator},#{associates},#{importance},#{create},#{template},#{opration})
+	</insert>
+	
+	<update id="UpdateSheet" parameterType="cn.edu.sdust.crm.domain.Sheet">
+		UPDATE worksheets
+		SET status=#{status},opration=#{opration},accepttime=#{accepttime}
+		WHERE id=#{id}
+	</update>
+</mapper>

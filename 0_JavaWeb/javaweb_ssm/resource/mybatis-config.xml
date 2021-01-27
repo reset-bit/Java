@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE configuration PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-config.dtd">
+<configuration>
+	<properties resource="data.properties"></properties>
+	<!-- 别名，为Java类设置一个简短的名字，方便映射使用 -->
+	<typeAliases>
+		<typeAlias alias="User" type="cn.edu.sdust.domain.User"></typeAlias>
+	</typeAliases>
+	
+	<!-- 配置mybatis运行环境 -->
+	<environments default="development">
+		<environment id="development">
+		<transactionManager type="JDBC"></transactionManager><!-- transcationManager事务管理器;代表使用JDBC的提交和回滚来管理事务 -->
+		<dataSource type="POOLED"></dataSource><!-- dataSource数据源;POOLED连接池类型 -->
+		</environment>
+	</environments>
+	
+	<!-- 配置引入映射器方法 -->
+	<mappers>
+		<mapper resource="cn.edu.sdust.mapper.UserMapper"></mapper><!-- 一般resource用.连接，class用/连接 -->
+<!-- 		<mapper resource="cn/edu/sdust/dao/IUserDao.java"></mapper> -->
+	</mappers>
+</configuration>

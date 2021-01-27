@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="cn.edu.sdust.mapper.IUserMapper">
+
+	<resultMap type="cn.edu.sdust.domain.User" id="User">
+        <id column="id" property="id" />
+        <result column="username" property="username" />
+        <result column="mobile" property="mobile" />
+        <result column="deptid" property="deptid" />
+    </resultMap>
+    
+    <select id="selectAllUsers" resultMap="User">
+    	SELECT *
+    	FROM user
+    </select>
+
+	<select id="selectUserById" resultMap="User" parameterType="int">
+		SELECT *
+		FROM user
+		WHERE id=#{id}
+	</select>    
+
+	<select id="selectUserByUsername" resultMap="User" parameterType="java.lang.String">
+		SELECT *
+		FROM user
+		WHERE username=#{username}
+	</select>  
+
+	<select id="selectUserByMobile" resultMap="User" parameterType="java.lang.String">
+		SELECT *
+		FROM user
+		WHERE mobile=#{mobile}
+	</select>  
+
+	<select id="selectUserByDeptid" resultMap="User" parameterType="int">
+		SELECT *
+		FROM user
+		WHERE deptid=#{deptid}
+	</select>  
+
+	<insert id="insertUser" parameterType="cn.edu.sdust.domain.User">
+		INSERT INTO user(id, username, mobile, deptid)
+		VALUES(#{id}, #{username}, #{mobile}, #{deptid})
+	</insert>
+	
+	<update id="updateUser" parameterType="cn.edu.sdust.domain.User">
+		UPDATE user
+		SET username=#{username},mobile=#{mobile},deptid=#{deptid}
+		WHERE id=#{id}
+	</update>
+	
+	<delete id="deleteUserById" parameterType="int">
+		DELETE FROM user
+		WHERE id=#{id}
+	</delete>
+</mapper>

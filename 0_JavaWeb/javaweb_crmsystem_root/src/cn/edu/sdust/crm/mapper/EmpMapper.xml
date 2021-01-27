@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="cn.edu.sdust.crm.mapper.EmpMapper">
+	<resultMap type="cn.edu.sdust.crm.domain.Employee" id="Employee">
+        <id column="empid" property="empid" />
+        <result column="empname" property="empname" />
+        <result column="emppassword" property="emppassword" />
+    </resultMap>
+    
+    <select id="allEmployee" resultMap="Employee">
+		SELECT *
+		FROM employees
+	</select>
+
+	<select id="selectEmployeeById" resultMap="Employee" parameterType="int">
+		SELECT *
+		FROM employees
+		WHERE empid=#{empid}
+	</select>
+	
+	<select id="selectEmployeeByName" resultMap="Employee" parameterType="java.lang.String">
+		SELECT *
+		FROM employees
+		WHERE empname=#{epmname}
+	</select>      
+
+</mapper>

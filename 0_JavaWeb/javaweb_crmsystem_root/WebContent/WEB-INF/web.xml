@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<web-app xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://xmlns.jcp.org/xml/ns/javaee" xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/javaee http://xmlns.jcp.org/xml/ns/javaee/web-app_3_1.xsd" id="WebApp_ID" version="3.1">
+  	
+    <listener>
+		<listener-class>org.springframework.web.context.ContextLoaderListener</listener-class>
+	</listener>
+   	<context-param>
+		<param-name>contextConfigLocation</param-name>
+		<param-value>classpath*:config/spring-mybatis.xml</param-value>
+	</context-param>
+	
+	<!-- 外部静态文件调用 -->
+	<servlet-mapping>
+		<servlet-name>default</servlet-name>
+		<url-pattern>/static/*</url-pattern>
+	</servlet-mapping>
+	<!-- WEB-INF下静态页面跳转 -->
+<!-- 	<action name="" class=""> -->
+<!-- 	  <result name="input">/regist.jsp</result> -->
+<!-- 	  <result name="success">/WEB-INF/jsp/test.html</result> -->
+<!-- 	</action> -->
+	
+	<!--Spring MVC配置  -->
+	<servlet>
+		<servlet-name>ssm</servlet-name>
+		<servlet-class>org.springframework.web.servlet.DispatcherServlet</servlet-class>
+		<load-on-startup>1</load-on-startup>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>ssm</servlet-name>
+		<url-pattern>/</url-pattern>
+	</servlet-mapping>
+</web-app>
